@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 const fs = require('fs');
 const path = require('path');
 const http = require('http');
@@ -45,20 +46,24 @@ function startServer(config) {
     console.error('Error:', err.message);
   });
 
-  handler.on('push', function (/* event */) {
+  handler.on('push', function (event) {
+    const {repository} = event.payload;
+    console.log('info: received a push event from:', repository.full_name);
     for (const cmd of on_push) {
-      child_process.execSync(cmd);
+      console.log(child_process.execSync(cmd));
     }
   });
 
-  handler.on('issues', function (/* event */) {
+  handler.on('issues', function (event) {
+    const {repository} = event.payload;
+    console.log('info: received an issue event from:', repository.full_name);
     for (const cmd of on_issue) {
-      child_process.execSync(cmd);
+      console.log(child_process.execSync(cmd));
     }
   });
 
   server.listen({host, port}, () => {
-    console.log(`server now running at ${ssl.enable ? 'https' : 'http'}://${host}:${port}`);
+    console.log(`info: server now running at ${ssl.enable ? 'https' : 'http'}://${host}:${port}${config.path}`);
   });
 }
 
