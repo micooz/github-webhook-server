@@ -1,0 +1,18 @@
+# HTTPS
+ssl:
+  enable: false
+  cert: cert.pem
+  key: key.pem
+
+# Server Listening Address
+host: localhost
+port: 8080
+path: /
+
+# Secret of GitHub WebHook, use environment variables
+secret: ${GITHUB_WEBHOOK_SECRET}
+
+# Event Hooks
+on_issue: echo "issue event received"
+on_push:
+  - echo "push event received"

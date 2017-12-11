@@ -1,0 +1,12 @@
+{
+  "name": "github-webhook-server",
+  "version": "0.0.1",
+  "description": "flexible github webhook server",
+  "dependencies": {
+    "github-webhook-handler": "^0.7.0",
+    "js-yaml": "^3.10.0"
+  },
+  "repository": "https://github.com/micooz/github-webhook-server.git",
+  "author": "Micooz <micooz@hotmail.com>",
+  "license": "MIT"
+}
